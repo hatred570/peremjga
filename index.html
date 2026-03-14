@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirect</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
-
 <body style="margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#111;color:#fff;font-family:sans-serif;">
-<div>Переход...</div>
+  <div id="txt">Переходим...</div>
 
-<script>
-Telegram.WebApp.ready();
+  <script>
+    const TARGET = "https://t.me/menstachbot?start=go";
 
-const VALID_KEY = "go";
-const BOT_LINK = "https://t.me/menstachbot";
+    function go() {
+      try {
+        if (window.Telegram && Telegram.WebApp) {
+          Telegram.WebApp.ready();
+          Telegram.WebApp.openTelegramLink(TARGET);
+          setTimeout(() => {
+            try { Telegram.WebApp.close(); } catch(e) {}
+          }, 1200);
+          return;
+        }
+      } catch(e) {}
 
-const startParam = Telegram.WebApp.initDataUnsafe.start_param || "";
+      window.location.href = TARGET;
+    }
 
-if (startParam === VALID_KEY) {
-
-setTimeout(() => {
-
-Telegram.WebApp.openTelegramLink(BOT_LINK);
-
-setTimeout(() => Telegram.WebApp.close(), 600);
-
-}, 800);
-
-}
-</script>
-
+    setTimeout(go, 300);
+  </script>
 </body>
 </html>
