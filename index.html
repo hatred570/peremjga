@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirect</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirect</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
-
 <body style="margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#0f0f0f;color:#e6e6e6;font-family:sans-serif;">
-<div>Переходим...</div>
+  <div>Переходим...</div>
 
-<script>
-Telegram.WebApp.ready();
+  <script>
+    const BOT_LINK = "https://t.me/menstachbot";
+    const TG_LINK = "tg://resolve?domain=menstachbot";
 
-const BOT_LINK = "https://t.me/menstachbot";
-
-setTimeout(() => {
     try {
-        Telegram.WebApp.openTelegramLink(BOT_LINK);
-    } catch(e) {
-        window.location.href = BOT_LINK;
-    }
-}, 400);
-</script>
+      if (window.Telegram && Telegram.WebApp) {
+        Telegram.WebApp.ready();
+      }
+    } catch (e) {}
 
+    setTimeout(() => {
+      try {
+        window.location.href = TG_LINK;
+      } catch (e) {}
+    }, 150);
+
+    setTimeout(() => {
+      try {
+        Telegram.WebApp.openTelegramLink(BOT_LINK);
+      } catch (e) {}
+    }, 500);
+
+    setTimeout(() => {
+      try {
+        window.location.href = BOT_LINK;
+      } catch (e) {}
+    }, 1000);
+  </script>
 </body>
 </html>
