@@ -2,8 +2,6 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirect</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 
@@ -11,7 +9,6 @@
 <div>Переход...</div>
 
 <script>
-
 Telegram.WebApp.ready();
 
 const VALID_KEY = "go";
@@ -21,18 +18,15 @@ const startParam = Telegram.WebApp.initDataUnsafe.start_param || "";
 
 if (startParam === VALID_KEY) {
 
-    setTimeout(() => {
+setTimeout(() => {
 
-        Telegram.WebApp.openTelegramLink(BOT_LINK);
+Telegram.WebApp.openTelegramLink(BOT_LINK);
 
-        setTimeout(() => {
-            Telegram.WebApp.close();
-        }, 600);
+setTimeout(() => Telegram.WebApp.close(), 600);
 
-    }, 800);
+}, 800);
 
 }
-
 </script>
 
 </body>
